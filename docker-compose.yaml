@@ -1,0 +1,34 @@
+version: '2'
+services:
+  seed:  
+    build: .
+    image: mattiashem/dbseed
+    depends_on:
+      - mysql
+    environment:
+      DEST_DBPASS: moodle
+      DEST_DBUSER: moodle
+      DEST_DB: moodle
+      DBHOST: mysql
+      ROOT: root
+      ROOTPASS: password
+      SEED_DB: true
+      SEED_SOURCE: https://storage.googleapis.com/elino-public-assets/sql/moodle/uggla_seed.sql
+    volumes:
+      - ./code:/code
+
+
+  mysql:
+    image: percona:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: root
+      PMA_PASSWORD: password
+    ports:
+      - "82:80"
+ 
