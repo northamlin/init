@@ -2,13 +2,13 @@ version: '2'
 services:
   seed:  
     build: .
-    image: mattiashem/dbseed
+    image: northamlin/init
     depends_on:
       - mysql
     environment:
       DEST_DBPASS: moodle
       DEST_DBUSER: moodle
-      DEST_DB: moodle
+      DEST_DB: moodle34
       DBHOST: mysql
       ROOT: root
       ROOTPASS: password

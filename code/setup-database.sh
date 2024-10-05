@@ -1,12 +1,14 @@
 #!/bin/bash
 
-echo "Waiting mysql to launch on 3306..."
+echo "Waiting $DBHOST to launch on 3306..."
 
-while ! nc -z mysql 3306; do   
+while ! nc -z $DBHOST 3306; do   
   sleep 0.1 # wait for 1/10 of the second before check again
 done
 
+# Some sleep sometimes the sql is slow a
 echo "Mysql is ready!"
+sleep 2
 
 
 # Check if the Database exists and if not create it
